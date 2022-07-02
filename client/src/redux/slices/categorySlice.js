@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+let category;
 const gc = async () => {
   const request = await fetch(
     `${import.meta.env.VITE_BASE_URL}/api/category/get`
   );
   const response = await request.json();
-  return response.category;
+  category = response.category;
 };
+gc();
 const catSlice = createSlice({
   name: "category",
-  initialState: { category: await gc() },
+  initialState: { category },
   reducers: {
     addCategory: (state, { type, payload }) => {
       state.category?.push(payload.category);

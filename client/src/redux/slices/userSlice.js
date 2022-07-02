@@ -6,19 +6,19 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, { type, payload }) => {
-      localStorage.setItem("userOutshade", JSON.stringify(user));
+      localStorage.setItem("userOutshade", JSON.stringify(payload));
       return {
         user: payload,
       };
     },
     signup: (state, { type, payload }) => {
-      localStorage.setItem("userOutshade", JSON.stringify(user));
+      localStorage.setItem("userOutshade", JSON.stringify(payload));
       return {
         user: payload,
       };
     },
     logout: (state, action) => {
-      localStorage.setItem("userOutshade", null);
+      localStorage.removeItem("userOutshade");
       return {
         user: null,
       };
@@ -28,4 +28,3 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 export const { login, logout, signup } = userSlice.actions;
-

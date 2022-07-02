@@ -1,22 +1,29 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import ForgotPass from './ForgotPass'
 import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
 import VerifyToken from './VerifyToken'
-import Header from "./partials/Header"
+import Header from './partials/Header'
 import Footer from './partials/Footer'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { login } from './redux/slices/userSlice'
+import Categories from './Categories'
+import Products from './Products'
+
 const App = () => {
-  const user = useSelector(state => state.userSlice)
-  conso
   return (
     <BrowserRouter>
-        <Header/>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/products/:category" element={<Products />} />
+
         <Route path="/forgotpass" element={<ForgotPass />} />
         <Route path="/signup" element={<Signup />} />
         <Route
@@ -24,7 +31,7 @@ const App = () => {
           element={<VerifyToken />}
         />
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   )
 }

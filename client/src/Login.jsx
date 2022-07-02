@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { login } from './redux/slices/userSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 const Login = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+
   const [error, setError] = useState(null)
+
   const loginForm = async (e) => {
     e.preventDefault()
     const payload = {}
@@ -12,6 +15,7 @@ const Login = () => {
     for (const [key, value] of data.entries()) {
       payload[key] = value
     }
+
     const request = await fetch(
       `${import.meta.env.VITE_BASE_URL}/api/user/login`,
       {
@@ -29,11 +33,17 @@ const Login = () => {
       return
     }
     dispatch(login(response.user))
+    navigate('/')
+  }
+  const user = useSelector((state) => state?.userSlice?.user)
+
+  if (user) {
+    return <Navigate to="/" />
   }
   return (
     <section className="block  w-full md:p-6">
       {/* login form  */}
-      <div className="w-[94%] md:p-4 md:max-w-[500px] py-6 bg-white rounded-lg shadow-md  shadow-slate-400/40 mx-auto mt-[25%] md:mt-[10%]">
+      <div className="w-[94%] md:p-4 md:max-w-[500px] py-6 bg-white rounded-lg shadow-md  shadow-slate-400/40 mx-auto my-8">
         {/* alert  */}
         {error && (
           <h4 className="w-[95%] flex items-center justify-between text-bold text-rose-500 bg-red-500/10 py-2 px-6 mx-auto">
@@ -59,7 +69,7 @@ const Login = () => {
               required
               className="outline-none w-full border rounded-md  focus:border-gold focus:shadow-sm focus:shadow-gold py-2 px-4 mt-2"
               placeholder="email is your useraname"
-              name="username"
+              name="email"
             />
           </div>
           <div className="mb-4">

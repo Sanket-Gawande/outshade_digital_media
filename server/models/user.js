@@ -2,10 +2,11 @@ import mongoose from "mongoose";
 
 const reqString = { type: String, required: true };
 const user = mongoose.Schema({
-  username: reqString,
+  email: reqString,
   password: reqString,
   name: reqString,
   token: String,
+  phone : reqString,
   joinedOn: {
     type: Date,
     default: new Date(),

@@ -6,6 +6,7 @@ const app = express();
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
+import categoryRoute from "./routes/category.js";
 const PORT = process.env.PORT || 6900;
 
 //middlewares
@@ -20,6 +21,7 @@ app.use(
 // routes
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
+app.use("/api/category", categoryRoute);
 
 // mongoose connection
 console.log("starting server...");

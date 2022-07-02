@@ -5,12 +5,14 @@ import './index.css'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import userSlice from './redux/slices/userSlice'
-import  postSlice from './redux/slices/postSlice'
+import productSlice from './redux/slices/productSlice'
+import categorySlice from "./redux/slices/categorySlice"
 
 const store = configureStore({
   reducer: {
     userSlice,
-    postSlice,
+    productSlice,
+    categorySlice
   },
 })
 ReactDOM.createRoot(document.getElementById('root')).render(

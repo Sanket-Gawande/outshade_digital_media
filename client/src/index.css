@@ -1,20 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   background-color: #ddd;
   width: 4px;
 }
 
-::-webkit-scrollbar-thumb{
-  background: rgb(38,62,91);
+::-webkit-scrollbar-thumb {
+  background: rgb(38, 62, 91);
   border-radius: 50px;
 }
 
+::selection {
+  background: rgb(38, 62, 91);
+  color: rgb(254, 206, 56);
+}
 
-::selection{
-  background: rgb(38,62,91);
-  color: rgb(254,206,56);
+* {
+  font-family: 'Poppins', sans-serif;
 }
